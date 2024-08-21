@@ -8,7 +8,7 @@ content: |-
 
   # Terraform Intersight - Organizations Module
 
-  A Terraform module to configure Intersight Infrastructure Organizations.
+  A Terraform module to configure Intersight Organizations.
 
   ### NOTE: THIS MODULE IS DESIGNED TO BE CONSUMED USING "EASY IMM"
 
