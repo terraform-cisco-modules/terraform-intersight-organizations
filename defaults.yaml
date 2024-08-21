@@ -1,0 +1,9 @@
+---
+create_organization: false
+description: ''
+name: '**REQUIRED**'
+organizations_to_share_with: []
+resource_groups:
+  description: ''
+  name: '**REQUIRED**'
+  resources: []

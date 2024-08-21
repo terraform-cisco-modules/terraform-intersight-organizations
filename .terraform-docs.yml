@@ -1,0 +1,30 @@
+version: '>= 0.14.0'
+
+formatter: markdown table
+
+content: |-
+  [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+  [![Developed by: Cisco](https://img.shields.io/badge/Developed%20by-Cisco-blue)](https://developer.cisco.com)
+
+  # Terraform Intersight - Organizations Module
+
+  A Terraform module to configure Intersight Infrastructure Organizations.
+
+  ### NOTE: THIS MODULE IS DESIGNED TO BE CONSUMED USING "EASY IMM"
+
+  ### A comprehensive example using this module is available below:
+  
+  ## [Easy IMM](https://github.com/terraform-cisco-modules/easy-imm)
+
+  {{ .Requirements }}
+  {{ .Providers }}
+  {{ .Modules }}
+  {{ .Inputs }}
+  {{ .Outputs }}
+  {{ .Resources }}
+output:
+  file: README.md
+  mode: replace
+
+sort:
+  enabled: false
