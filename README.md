@@ -45,7 +45,6 @@ No modules.
 | [intersight_iam_sharing_rule.map](https://registry.terraform.io/providers/CiscoDevNet/intersight/latest/docs/resources/iam_sharing_rule) | resource |
 | [intersight_organization_organization.map](https://registry.terraform.io/providers/CiscoDevNet/intersight/latest/docs/resources/organization_organization) | resource |
 | [intersight_resource_group.map](https://registry.terraform.io/providers/CiscoDevNet/intersight/latest/docs/resources/resource_group) | resource |
-| [intersight_compute_rack_unit.map](https://registry.terraform.io/providers/CiscoDevNet/intersight/latest/docs/data-sources/compute_rack_unit) | data source |
-| [intersight_network_element.map](https://registry.terraform.io/providers/CiscoDevNet/intersight/latest/docs/data-sources/network_element) | data source |
+| [intersight_asset_target.map](https://registry.terraform.io/providers/CiscoDevNet/intersight/latest/docs/data-sources/asset_target) | data source |
 | [intersight_organization_organization.map](https://registry.terraform.io/providers/CiscoDevNet/intersight/latest/docs/data-sources/organization_organization) | data source |
 <!-- END_TF_DOCS -->

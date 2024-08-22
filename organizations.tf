@@ -16,7 +16,6 @@ resource "intersight_organization_organization" "map" {
   dynamic "resource_groups" {
     for_each = { for v in each.value.resource_groups : v.name => v }
     content {
-      class_id    = "resource.Group"
       moid        = intersight_resource_group.map[resource_groups.value.name].moid
       object_type = "resource.Group"
     }
@@ -34,14 +33,11 @@ resource "intersight_iam_sharing_rule" "map" {
   depends_on = [intersight_organization_organization.map]
   for_each   = local.shared_organizations
   shared_resource {
-    moid        = intersight_organization_organization.map[each.key]
+    moid        = intersight_organization_organization.map[each.value.org].moid
     object_type = "organization.Organization"
   }
-  dynamic "shared_with_resource" {
-    for_each = { for v in each.value.organizations_to_share_with : v => v }
-    content {
-      moid        = local.organizations_data[shared_with_resource.value]
-      object_type = "organization.Organization"
-    }
+  shared_with_resource {
+    moid        = local.organizations_data[each.value.shared].moid
+    object_type = "organization.Organization"
   }
 }
