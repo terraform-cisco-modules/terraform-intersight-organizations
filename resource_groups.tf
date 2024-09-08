@@ -24,7 +24,8 @@ resource "intersight_resource_group" "map" {
       class_id = "resource.Selector"
       selector = length(regexall("blades", selectors.key)
         ) > 0 ? "/api/v1/compute/Blades?$filter=Serial in ('${trim(join("', '", each.value.selectors[selectors.key]), ", '")}') and ManagementMode eq 'Intersight'" : length(regexall("rackmounts", selectors.key)
-        ) > 0 ? "/api/v1/compute/RackUnits?$filter=Serial in ('${trim(join("', '", each.value.selectors[selectors.key]), ", '")}') and ManagementMode eq 'Intersight'" : length(regexall("registrations", selectors.key)
+        ) > 0 ? "/api/v1/compute/RackUnits?$filter=Serial in ('${trim(join("', '", each.value.selectors[selectors.key]), ", '")}') and ManagementMode eq 'Intersight'" : length(regexall("registrations", selectors.key)) > 0 && length(each.value.selectors[selectors.key]
+        ) > 1 ? "/api/v1/asset/DeviceRegistrations?$filter=(Moid in ('${trim(join("', '", sort(each.value.selectors[selectors.key])), ", '")}'))" : length(regexall("registrations", selectors.key)
       ) > 0 ? "/api/v1/asset/DeviceRegistrations?$filter=Moid in ('${trim(join("', '", sort(each.value.selectors[selectors.key])), ", '")}')" : ""
       object_type = "resource.Selector"
     }
