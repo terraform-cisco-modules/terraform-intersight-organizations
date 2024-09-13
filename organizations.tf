@@ -4,8 +4,6 @@
 # GUI Location: System > Organizations
 #____________________________________________________________
 data "intersight_organization_organization" "map" {
-  for_each = { for v in local.data_organizations : v => v }
-  name     = each.value
 }
 
 resource "intersight_organization_organization" "map" {

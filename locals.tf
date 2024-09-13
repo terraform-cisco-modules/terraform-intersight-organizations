@@ -18,12 +18,13 @@ locals {
   shared_organizations = { for i in flatten(
     [for k, v in local.organization : [for e in v.organizations_to_share_with : { org = k, shared = e }] if length(v.organizations_to_share_with) > 0
   ]) : "${i.org}/${i.shared}" => i }
-  data_organizations = distinct(concat(flatten([for k, v in local.organization : [
-    for e in v.organizations_to_share_with : e if contains(keys(local.organization), e) == false
-  ]]), [for e in local.org_keys : e if contains(keys(local.organization), e) == false]))
-  organizations_data = merge({ for k, v in intersight_organization_organization.map : k => v }, {
-    for k, v in data.intersight_organization_organization.map : k => v.results
-  })
+  #data_organizations = distinct(concat(flatten([for k, v in local.organization : [
+  #  for e in v.organizations_to_share_with : e if contains(keys(local.organization), e) == false
+  #]]), [for e in local.org_keys : e if contains(keys(local.organization), e) == false]))
+  organizations_data = merge(
+    { for e in data.intersight_organization_organization.map.results : e.name => e },
+    { for k, v in intersight_organization_organization.map : k => v }
+  )
   #____________________________________________________________
   #
   # Intersight - Resource Groups
