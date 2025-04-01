@@ -33,11 +33,11 @@ locals {
     for i in flatten([for k, value in local.organization : [for v in lookup(value, "resource_groups", []) : merge(v, {
       tags = lookup(v, "tags", var.global_settings.tags)
       selectors = {
-        blades     = lookup(lookup(v.resources, "sub_targets", {}), "blades", [])
-        rackmounts = lookup(lookup(v.resources, "sub_targets", {}), "rackmounts", [])
-        targets    = lookup(v.resources, "targets", [])
+        blades     = length(lookup(v, "resources", [])) > 0 ? lookup(lookup(v.resources, "sub_targets", {}), "blades", []) : []
+        rackmounts = length(lookup(v, "resources", [])) > 0 ? lookup(lookup(v.resources, "sub_targets", {}), "rackmounts", []) : []
+        targets    = length(lookup(v, "resources", [])) > 0 ? lookup(v.resources, "targets", []) : []
       }
       })
   ]]) : i.name => i }
-  target_resources = flatten([for k, v in local.resource_group : lookup(v.resources, "targets", [])])
+  target_resources = flatten([for k, v in local.resource_group : lookup(v.selectors, "targets", [])])
 }
